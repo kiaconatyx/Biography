@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Biography</string>
+    <string name="button_addBiography">Add Biography</string>
+
 </resources>
