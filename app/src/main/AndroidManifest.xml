@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Biography"
         tools:targetApi="31">
         <activity
-            android:name=".BiographyActivity"
+            android:name=".activities.BiographyActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
