@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import org.wit.biography.databinding.ActivityBiographyBinding
+import org.wit.biography.main.MainApp
 import org.wit.biography.models.BiographyModel
 import timber.log.Timber
 import timber.log.Timber.i
@@ -12,15 +13,15 @@ class BiographyActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBiographyBinding
     var biography = BiographyModel()
-    val biographys = ArrayList<BiographyModel>()
-
+    //val biographys = ArrayList<BiographyModel>()
+lateinit var app : MainApp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityBiographyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        app = application as MainApp
         i("Biography Activity started...")
 
         binding.btnAdd.setOnClickListener() {
@@ -29,10 +30,10 @@ class BiographyActivity : AppCompatActivity() {
             biography.ISBN = binding.biographyISBN.text.toString()
             biography.author = binding.biographyAuthor.text.toString()
             if (biography.title.isNotEmpty()) {
-                biographys.add(biography.copy())
+                app.biographys.add(biography.copy())
                 i("add Button Pressed: ${biography}")
-                for (i in biographys.indices)
-                { i("Biography[$i]:${this.biographys[i]}") }
+                for (i in app.biographys.indices)
+                { i("Biography[$i]:${this.app.biographys[i]}") }
 
             }
             else {
