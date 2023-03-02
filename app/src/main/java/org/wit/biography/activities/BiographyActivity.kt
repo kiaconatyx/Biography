@@ -20,7 +20,6 @@ class BiographyActivity : AppCompatActivity() {
         binding = ActivityBiographyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Timber.plant(Timber.DebugTree())
 
         i("Biography Activity started...")
 
