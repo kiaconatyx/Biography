@@ -12,6 +12,7 @@ class BiographyActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBiographyBinding
     var biography = BiographyModel()
+    //val biographys = ArrayList<BiographyModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +27,11 @@ class BiographyActivity : AppCompatActivity() {
         binding.btnAdd.setOnClickListener() {
             biography.title = binding.biographyTitle.text.toString()
             if (biography.title.isNotEmpty()) {
-                i("add Button Pressed: $biography.Title")
+                biograpys.add(biography.copy())
+                i("add Button Pressed: ${biography}")
+                for (i in biographys.indices)
+                { i("Biography[$i]:${this.biographys[i]}") }
+
             }
             else {
                 Snackbar

@@ -2,4 +2,7 @@
     <string name="app_name">Biography</string>
     <string name="button_addBiography">Add Biography</string>
     <string name="hint_biographyTitle">Biography Title</string>
+    <string name="hint_biographyDescription">Biography Description </string>
+    <string name="hint_biographyISBN">Biography ISBN </string>
+    <string name="hint_biographyAuthor">Biography Author </string>
 </resources>
