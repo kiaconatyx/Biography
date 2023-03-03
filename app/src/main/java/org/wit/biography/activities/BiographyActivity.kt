@@ -34,7 +34,8 @@ lateinit var app : MainApp
                 i("add Button Pressed: ${biography}")
                 for (i in app.biographys.indices)
                 { i("Biography[$i]:${this.app.biographys[i]}") }
-
+                setResult(RESULT_OK)
+                finish()
             }
             else {
                 Snackbar

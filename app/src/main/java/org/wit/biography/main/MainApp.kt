@@ -13,8 +13,8 @@ class MainApp : Application() {
         super.onCreate()
         Timber.plant(Timber.DebugTree())
         i("Biography started")
-        biographys.add(BiographyModel("One", "About one...", "Unique Code one", "Creator of One"))
-        biographys.add(BiographyModel("Two", "About two...", "Unique Code two", "Creator of Two"))
-        biographys.add(BiographyModel("Three", "About three...", "Unique Code three", "Creator of Three"))
+       // biographys.add(BiographyModel("One", "About one...", "Unique Code one", "Creator of One"))
+        //biographys.add(BiographyModel("Two", "About two...", "Unique Code two", "Creator of Two"))
+       // biographys.add(BiographyModel("Three", "About three...", "Unique Code three", "Creator of Three"))
     }
 }
