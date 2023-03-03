@@ -1,5 +1,7 @@
 package org.wit.biography.models
 
+import timber.log.Timber.i
+
 class BiographyMemStore : BiographyStore {
 
     val biographys = ArrayList<BiographyModel>()
@@ -8,7 +10,15 @@ class BiographyMemStore : BiographyStore {
         return biographys
     }
 
+
+
     override fun create(biography: BiographyModel) {
         biographys.add(biography)
+        logAll()
     }
+
+    fun logAll() {
+        biographys.forEach{ i("${it}") }
+    }
+
 }

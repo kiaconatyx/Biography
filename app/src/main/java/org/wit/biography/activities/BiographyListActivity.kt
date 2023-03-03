@@ -27,7 +27,9 @@ class BiographyListActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = BiographyAdapter(app.biographys)
+        //binding.recyclerView.adapter = BiographyAdapter(app.biographys)
+        binding.recyclerView.adapter = BiographyAdapter(app.biographys.findAll())
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -50,7 +52,9 @@ class BiographyListActivity : AppCompatActivity() {
         ) {
             if (it.resultCode == Activity.RESULT_OK) {
                 (binding.recyclerView.adapter)?.
-                notifyItemRangeChanged(0,app.biographys.size)
+
+                notifyItemRangeChanged(0,app.biographys.findAll().size)
+
             }
         }
 

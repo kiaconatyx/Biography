@@ -3,6 +3,7 @@ package org.wit.biography.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import org.wit.biography.R
 import org.wit.biography.databinding.ActivityBiographyBinding
@@ -37,10 +38,7 @@ lateinit var app : MainApp
             biography.ISBN = binding.biographyISBN.text.toString()
             biography.author = binding.biographyAuthor.text.toString()
             if (biography.title.isNotEmpty()) {
-                app.biographys.add(biography.copy())
-                i("add Button Pressed: ${biography}")
-                for (i in app.biographys.indices)
-                { i("Biography[$i]:${this.app.biographys[i]}") }
+                app.biographys.create(biography.copy())
                 setResult(RESULT_OK)
                 finish()
             }
@@ -55,5 +53,12 @@ lateinit var app : MainApp
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_biography, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_cancel -> { finish() }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
