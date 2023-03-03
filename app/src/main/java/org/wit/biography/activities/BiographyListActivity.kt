@@ -63,6 +63,7 @@ class BiographyListActivity : AppCompatActivity(), BiographyListener {
         }
     override fun onBiographyClick(biography: BiographyModel) {
         val launcherIntent = Intent(this, BiographyActivity::class.java)
+        launcherIntent.putExtra("biography_edit", biography)
         getClickResult.launch(launcherIntent)
     }
 

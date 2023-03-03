@@ -30,7 +30,13 @@ lateinit var app : MainApp
 
 
         app = application as MainApp
-        i("Biography Activity started...")
+        if (intent.hasExtra("biography_edit")) {
+            biography = intent.extras?.getParcelable("biography_edit")!!
+            binding.biographyTitle.setText(biography.title)
+            binding.biographyDescription.setText(biography.description)
+            binding.biographyAuthor.setText(biography.author)
+            binding.biographyISBN.setText(biography.ISBN)
+        }
 
         binding.btnAdd.setOnClickListener() {
             biography.title = binding.biographyTitle.text.toString()
@@ -44,7 +50,7 @@ lateinit var app : MainApp
             }
             else {
                 Snackbar
-                    .make(it,"Please Enter a title", Snackbar.LENGTH_LONG)
+                    .make(it,R.string.enter_biography_title, Snackbar.LENGTH_LONG)
                     .show()
             }
         }

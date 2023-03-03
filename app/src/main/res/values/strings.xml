@@ -7,5 +7,7 @@
     <string name="hint_biographyAuthor">Biography Author </string>
     <string name="menu_addBiography">Add</string>
     <string name="menu_cancelBiography">Cancel</string>
+    <string name="enter_biography_title"> Please enter a Biography Title </string>
+
 
 </resources>
