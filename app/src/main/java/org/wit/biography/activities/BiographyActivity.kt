@@ -36,6 +36,8 @@ lateinit var app : MainApp
             binding.biographyDescription.setText(biography.description)
             binding.biographyAuthor.setText(biography.author)
             binding.biographyISBN.setText(biography.ISBN)
+            binding.btnAdd.setText(R.string.save_biography)
+
         }
 
         binding.btnAdd.setOnClickListener() {
