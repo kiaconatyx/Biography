@@ -6,5 +6,6 @@
     <string name="hint_biographyISBN">Biography ISBN </string>
     <string name="hint_biographyAuthor">Biography Author </string>
     <string name="menu_addBiography">Add</string>
+    <string name="menu_cancelBiography">Cancel</string>
 
 </resources>

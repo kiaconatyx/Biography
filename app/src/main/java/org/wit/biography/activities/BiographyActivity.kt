@@ -2,7 +2,9 @@ package org.wit.biography.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import com.google.android.material.snackbar.Snackbar
+import org.wit.biography.R
 import org.wit.biography.databinding.ActivityBiographyBinding
 import org.wit.biography.main.MainApp
 import org.wit.biography.models.BiographyModel
@@ -20,6 +22,11 @@ lateinit var app : MainApp
 
         binding = ActivityBiographyBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        binding.toolbarAdd.title = title
+        setSupportActionBar(binding.toolbarAdd)
+
 
         app = application as MainApp
         i("Biography Activity started...")
@@ -43,5 +50,10 @@ lateinit var app : MainApp
                     .show()
             }
         }
+
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_biography, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }

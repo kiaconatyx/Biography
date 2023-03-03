@@ -42,9 +42,8 @@ class BiographyListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_add -> {
-                val launcherIntent = Intent(this, BiographyActivity::class.java)
-                getResult.launch(launcherIntent)
+            R.id.item_cancel -> {
+
             }
         }
         return super.onOptionsItemSelected(item)
