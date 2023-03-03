@@ -1,21 +1,16 @@
 package org.wit.biography.activities
 
 import android.app.Activity
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import org.wit.biography.databinding.ActivityBiographyListBinding
-import org.wit.biography.databinding.CardBiographyBinding
 import org.wit.biography.R
 import org.wit.biography.main.MainApp
-import org.wit.biography.models.BiographyModel
+import org.wit.placemark.adapters.BiographyAdapter
 
 class BiographyListActivity : AppCompatActivity() {
 
@@ -61,31 +56,4 @@ class BiographyListActivity : AppCompatActivity() {
 
 }
 
-class BiographyAdapter constructor(private var biographys: List<BiographyModel>) :
-    RecyclerView.Adapter<BiographyAdapter.MainHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
-        val binding = CardBiographyBinding
-            .inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return MainHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val biography = biographys[holder.adapterPosition]
-        holder.bind(biography)
-    }
-
-    override fun getItemCount(): Int = biographys.size
-
-    class MainHolder(private val binding : CardBiographyBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(biography: BiographyModel) {
-            binding.biographyTitle.text = biography.title
-            binding.biographyDescription.text = biography.description
-            binding.biographyISBN.text = biography.ISBN
-            binding.biographyAuthor.text = biography.author
-        }
-    }
-}
