@@ -1,6 +1,7 @@
 package org.wit.biography.activities
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -10,9 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.biography.databinding.ActivityBiographyListBinding
 import org.wit.biography.R
 import org.wit.biography.main.MainApp
-import org.wit.placemark.adapters.BiographyAdapter
+import org.wit.biography.adapters.BiographyAdapter
+import org.wit.biography.adapters.BiographyListener
+import org.wit.biography.models.BiographyModel
 
-class BiographyListActivity : AppCompatActivity() {
+class BiographyListActivity : AppCompatActivity(), BiographyListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityBiographyListBinding
@@ -28,7 +31,8 @@ class BiographyListActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         //binding.recyclerView.adapter = BiographyAdapter(app.biographys)
-        binding.recyclerView.adapter = BiographyAdapter(app.biographys.findAll())
+        binding.recyclerView.adapter = BiographyAdapter(app.biographys.findAll(),this)
+
 
     }
 
@@ -55,6 +59,20 @@ class BiographyListActivity : AppCompatActivity() {
 
                 notifyItemRangeChanged(0,app.biographys.findAll().size)
 
+            }
+        }
+    override fun onBiographyClick(biography: BiographyModel) {
+        val launcherIntent = Intent(this, BiographyActivity::class.java)
+        getClickResult.launch(launcherIntent)
+    }
+
+    private val getClickResult =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                (binding.recyclerView.adapter)?.
+                notifyItemRangeChanged(0,app.biographys.findAll().size)
             }
         }
 
