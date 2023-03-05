@@ -31,6 +31,7 @@ class BiographyMemStore : BiographyStore {
             foundBiography.description = biography.description
             foundBiography.ISBN = biography.ISBN
             foundBiography.author = biography.author
+            foundBiography.bookcount = biography.bookcount
             logAll()
         }
     }

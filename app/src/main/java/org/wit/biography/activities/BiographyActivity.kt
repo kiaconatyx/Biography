@@ -33,6 +33,7 @@ class BiographyActivity : AppCompatActivity() {
             binding.biographyDescription.setText(biography.description)
             binding.biographyISBN.setText(biography.ISBN)
             binding.biographyAuthor.setText(biography.author)
+            binding.biographybookcount.setText(biography.bookcount)
             binding.btnAdd.setText(R.string.save_biography)
         }
 
@@ -41,6 +42,7 @@ class BiographyActivity : AppCompatActivity() {
             biography.description = binding.biographyDescription.text.toString()
             biography.author = binding.biographyAuthor.text.toString()
             biography.ISBN = binding.biographyISBN.text.toString()
+            biography.bookcount = binding.biographybookcount.text.toString().toInt()
             if (biography.title.isEmpty()) {
                 Snackbar.make(it,R.string.enter_biography_title, Snackbar.LENGTH_LONG)
                     .show()

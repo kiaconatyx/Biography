@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="12dp"
             android:textSize="30sp"
             tools:text="A Title" />
 
@@ -41,6 +42,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/biographyISBN"
+            tools:text="An Author" />
+
+        <TextView
+            android:id="@+id/biographybookcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/biographyAuthor"
             tools:text="An Author" />
 
     </RelativeLayout>

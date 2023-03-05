@@ -5,6 +5,7 @@
     <string name="hint_biographyDescription">Biography Description </string>
     <string name="hint_biographyISBN">Biography ISBN </string>
     <string name="hint_biographyAuthor">Biography Author </string>
+    <string name="hint_biographybookcount">Number of Other Books By Author </string>
     <string name="menu_addBiography">Add</string>
     <string name="menu_cancelBiography">Cancel</string>
     <string name="enter_biography_title"> Please enter a Biography Title </string>

@@ -36,6 +36,7 @@ class BiographyAdapter constructor(private var biographys: List<BiographyModel>,
             binding.biographyDescription.text = biography.description
             binding.biographyISBN.text = biography.ISBN
             binding.biographyAuthor.text = biography.author
+            binding.biographybookcount.text = biography.bookcount.toString()
             binding.root.setOnClickListener { listener.onBiographyClick(biography) }
         }
     }

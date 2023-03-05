@@ -8,5 +8,6 @@ data class BiographyModel( var id: Long = 0,
                         var title: String ="",
                         var description: String="",
                           var ISBN: String="",
-                          var author: String="") : Parcelable
+                          var author: String="",
+                        var bookcount: Int = 0) : Parcelable
 
