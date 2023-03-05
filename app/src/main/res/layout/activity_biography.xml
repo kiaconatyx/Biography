@@ -57,7 +57,7 @@
                 <EditText
                     android:id="@+id/biographyDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_margin="8dp"
                     android:hint="@string/hint_biographyDescription"
                     android:inputType="text"
