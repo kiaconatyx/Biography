@@ -1,12 +1,16 @@
 package org.wit.biography.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
 import org.wit.biography.R
 import org.wit.biography.databinding.ActivityBiographyBinding
+import org.wit.biography.helpers.showImagePicker
 import org.wit.biography.main.MainApp
 import org.wit.biography.models.BiographyModel
 import timber.log.Timber
@@ -16,6 +20,8 @@ class BiographyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBiographyBinding
     var biography = BiographyModel()
     lateinit var app: MainApp
+    private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    val IMAGE_REQUEST = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +41,9 @@ class BiographyActivity : AppCompatActivity() {
             binding.biographyAuthor.setText(biography.author)
             binding.biographybookcount.setText(biography.bookcount)
             binding.btnAdd.setText(R.string.save_biography)
+            Picasso.get()
+                .load(biography.image)
+                .into(binding.biographyImage)
         }
 
         binding.btnAdd.setOnClickListener() {
@@ -56,7 +65,14 @@ class BiographyActivity : AppCompatActivity() {
             setResult(RESULT_OK)
             finish()
         }
+
+        binding.chooseImage.setOnClickListener {
+            i("Select image")
+        }
+        registerImagePickerCallback()
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_biography, menu)
@@ -69,4 +85,23 @@ class BiographyActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+    private fun registerImagePickerCallback() {
+        imageIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when(result.resultCode){
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Result ${result.data!!.data}")
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
+
+
+
+
+
 }
