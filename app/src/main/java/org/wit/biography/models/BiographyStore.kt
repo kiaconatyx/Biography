@@ -7,4 +7,6 @@ interface BiographyStore {
     fun update(biography: BiographyModel)
 
     fun delete(biography: BiographyModel)
+
+    fun findById(id:Long) : BiographyModel?
 }
