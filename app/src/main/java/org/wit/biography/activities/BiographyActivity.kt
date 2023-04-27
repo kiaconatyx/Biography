@@ -118,7 +118,15 @@ class BiographyActivity : AppCompatActivity() {
         mapIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
             { i("Map Loaded") }
+
+        binding.biographyLocation.setOnClickListener {
+            val launcherIntent = Intent(this, MapActivity::class.java)
+            mapIntentLauncher.launch(launcherIntent)
+        }
+
     }
+
+
 
 
 
