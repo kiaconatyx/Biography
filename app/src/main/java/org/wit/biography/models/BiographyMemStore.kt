@@ -28,6 +28,11 @@ class BiographyMemStore : BiographyStore {
         biographys.remove(biography)
     }
 
+    override fun findById(id:Long) : BiographyModel? {
+        val foundBiography: BiographyModel? = biographys.find { it.id == id }
+        return foundBiography
+    }
+
     override fun update(biography: BiographyModel) {
         var foundBiography: BiographyModel? = biographys.find { p -> p.id == biography.id }
         if (foundBiography != null) {
@@ -43,6 +48,8 @@ class BiographyMemStore : BiographyStore {
             logAll()
         }
     }
+    
+    
 
     private fun logAll() {
         biographys.forEach { i("$it") }

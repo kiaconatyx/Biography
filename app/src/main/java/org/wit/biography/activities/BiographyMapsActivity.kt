@@ -7,6 +7,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.squareup.picasso.Picasso
 
 import org.wit.biography.databinding.ActivityBiographyMapsBinding
 import org.wit.biography.databinding.ContentBiographyMapsBinding
@@ -71,8 +72,11 @@ class BiographyMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListen
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        contentBinding.currentTitle.text = marker.title
-
+        val tag = marker.tag as Long
+        val biography = app.biographys.findById(tag)
+        contentBinding.currentTitle.text = biography!!.title
+        contentBinding.currentDescription.text = biography.description
+        Picasso.get().load(biography.image).into(contentBinding.currentImage)
         return false
     }
 

@@ -44,7 +44,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toEndOf="@+id/imageIcon"
-            app:layout_constraintTop_toBottomOf="@id/placemarkTitle"
+            app:layout_constraintTop_toBottomOf="@id/biographyTitle"
             android:layout_below="@id/biographyTitle"
             tools:text="A Description" />
 

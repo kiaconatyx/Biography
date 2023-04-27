@@ -15,24 +15,12 @@ xmlns:tools="http://schemas.android.com/tools">
     android:theme="@style/Theme.Biography"
     tools:targetApi="31">
 
-    <!--
-             TODO: Before you run your application, you need a Google Maps API key.
-
-             To get one, follow the directions here:
-
-                https://developers.google.com/maps/documentation/android-sdk/get-api-key
-
-             Once you have your API key (it starts with "AIza"), define a new property in your
-             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
-             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
-        -->
     <meta-data
         android:name="com.google.android.geo.API_KEY"
-        android:value="YOUR_API_KEY" />
+        android:value="${MAPS_API_KEY}" />
 
     <activity
-        android:name=".MapActivity"
-        android:exported="false"
+        android:name=".activities.EditLocationView"
         android:label="@string/title_activity_map" />
     <activity
         android:name=".activities.BiographyListActivity"
@@ -47,7 +35,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:name="android.app.lib_name"
             android:value="" />
     </activity>
-    <activity android:name=".activities.BiographyActivity">
+    <activity android:name=".activities.BiographyView" />
         <meta-data
             android:name="android.app.lib_name"
             android:value="" />
@@ -58,7 +46,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:value="${MAPS_API_KEY}" />
 </application>
 
-</manifest>=======
+</manifest>
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 <application>
@@ -68,4 +56,4 @@ xmlns:tools="http://schemas.android.com/tools">
         android:label="@string/title_activity_biography_maps"
         android:theme="@style/Theme.Biography.NoActionBar" />
 </application>
-</manifest>>>>>>>> Added
+</manifest>
