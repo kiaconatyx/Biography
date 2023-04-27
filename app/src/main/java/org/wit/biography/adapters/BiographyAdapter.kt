@@ -3,6 +3,7 @@ package org.wit.biography.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import org.wit.biography.databinding.CardBiographyBinding
 import org.wit.biography.models.BiographyModel
 
@@ -37,6 +38,7 @@ class BiographyAdapter constructor(private var biographys: List<BiographyModel>,
             binding.biographyISBN.text = biography.ISBN
             binding.biographyAuthor.text = biography.author
             binding.biographybookcount.text = biography.bookcount.toString()
+            Picasso.get().load(biography.image).resize(200,200).into(binding.imageIcon)
             binding.root.setOnClickListener { listener.onBiographyClick(biography) }
         }
     }

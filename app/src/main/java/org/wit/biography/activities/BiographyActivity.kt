@@ -1,6 +1,7 @@
 package org.wit.biography.activities
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -15,6 +16,7 @@ import org.wit.biography.main.MainApp
 import org.wit.biography.models.BiographyModel
 import timber.log.Timber
 import timber.log.Timber.i
+import com.squareup.picasso.Picasso
 
 class BiographyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBiographyBinding
@@ -44,6 +46,12 @@ class BiographyActivity : AppCompatActivity() {
             Picasso.get()
                 .load(biography.image)
                 .into(binding.biographyImage)
+            if (biography.image != Uri.EMPTY) {
+                binding.chooseImage.setText(R.string.change_biography_image)
+                binding.biographyLocation.setOnClickListener {
+                    i ("Set Location Pressed")
+                }
+            }
         }
 
         binding.btnAdd.setOnClickListener() {
@@ -93,6 +101,10 @@ class BiographyActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
+                            biography.image = result.data!!.data!!
+                            Picasso.get()
+                                .load(biography.image)
+                                .into(binding.biographyImage)
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
