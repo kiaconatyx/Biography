@@ -46,13 +46,13 @@ class BiographyListActivity : AppCompatActivity(), BiographyListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_delete -> {
-                setResult(99)
-                app.biographys.delete(biography)
-                finish()
+            R.id.item_add -> {
+                val launcherIntent = Intent(this, BiographyActivity::class.java)
+                getResult.launch(launcherIntent)
             }
-            R.id.item_cancel -> {
-                finish()
+            R.id.item_map -> {
+                val launcherIntent = Intent(this, BiographyMapsActivity::class.java)
+                mapIntentLauncher.launch(launcherIntent)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -87,6 +87,11 @@ class BiographyListActivity : AppCompatActivity(), BiographyListener {
             else // Deleting
                 if (it.resultCode == 99)     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
+
+    private val mapIntentLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        )    { }
 
 
 
