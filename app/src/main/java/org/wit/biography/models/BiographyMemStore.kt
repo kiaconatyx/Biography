@@ -24,6 +24,10 @@ class BiographyMemStore : BiographyStore {
         logAll()
     }
 
+    override fun delete(biography: BiographyModel) {
+        biographys.remove(biography)
+    }
+
     override fun update(biography: BiographyModel) {
         var foundBiography: BiographyModel? = biographys.find { p -> p.id == biography.id }
         if (foundBiography != null) {

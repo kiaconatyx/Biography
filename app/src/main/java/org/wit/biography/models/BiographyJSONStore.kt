@@ -58,6 +58,10 @@ class BiographyJSONStore(private val context: Context) : BiographyStore {
         serialize()
     }
 
+    override fun delete(biography: BiographyModel) {
+        biographys.remove(biography)
+    }
+
     private fun serialize() {
         val jsonString = gsonBuilder.toJson(biographys, listType)
         write(context, JSON_FILE, jsonString)
@@ -81,6 +85,7 @@ class UriParser : JsonDeserializer<Uri>,JsonSerializer<Uri> {
     ): Uri {
         return Uri.parse(json?.asString)
     }
+
 
     override fun serialize(
         src: Uri?,

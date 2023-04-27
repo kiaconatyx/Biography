@@ -5,4 +5,6 @@ interface BiographyStore {
     fun create(biography: BiographyModel)
 
     fun update(biography: BiographyModel)
+
+    fun delete(biography: BiographyModel)
 }
