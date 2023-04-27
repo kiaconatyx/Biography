@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 import org.wit.biography.databinding.ActivityBiographyMapsBinding
@@ -12,7 +13,7 @@ import org.wit.biography.databinding.ContentBiographyMapsBinding
 import org.wit.biography.main.MainApp
 
 
-class BiographyMapsActivity : AppCompatActivity() {
+class BiographyMapsActivity : AppCompatActivity(), GoogleMap.OnMarkerClickListener {
 
     private lateinit var binding: ActivityBiographyMapsBinding
     private lateinit var contentBinding: ContentBiographyMapsBinding
@@ -26,6 +27,7 @@ class BiographyMapsActivity : AppCompatActivity() {
             val options = MarkerOptions().title(it.title).position(loc)
             map.addMarker(options)?.tag = it.id
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, it.zoom))
+            map.setOnMarkerClickListener(this)
         }
     }
 
@@ -66,6 +68,12 @@ class BiographyMapsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         contentBinding.mapView.onResume()
+    }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        contentBinding.currentTitle.text = marker.title
+
+        return false
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
