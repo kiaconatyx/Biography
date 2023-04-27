@@ -32,6 +32,10 @@ class BiographyMemStore : BiographyStore {
             foundBiography.ISBN = biography.ISBN
             foundBiography.author = biography.author
             foundBiography.bookcount = biography.bookcount
+            foundBiography.image = biography.image
+            foundBiography.lat = biography.lat
+            foundBiography.lng = biography.lng
+            foundBiography.zoom = biography.zoom
             logAll()
         }
     }

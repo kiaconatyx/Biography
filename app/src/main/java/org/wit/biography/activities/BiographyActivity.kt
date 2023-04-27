@@ -26,7 +26,7 @@ class BiographyActivity : AppCompatActivity() {
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
     val IMAGE_REQUEST = 1
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
-    var location = Location(52.245696, -7.139102, 15f)
+    //var location = Location(52.245696, -7.139102, 15f)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +53,15 @@ class BiographyActivity : AppCompatActivity() {
             if (biography.image != Uri.EMPTY) {
                 binding.chooseImage.setText(R.string.change_biography_image)
                 binding.biographyLocation.setOnClickListener {
-                    i ("Set Location Pressed")
+                    val location = Location(52.245696, -7.139102, 15f)
+                    if (biography.zoom != 0f) {
+                        location.lat =  biography.lat
+                        location.lng = biography.lng
+                        location.zoom = biography.zoom
+                    }
+                    val launcherIntent = Intent(this, MapActivity::class.java)
+                        .putExtra("location", location)
+                    mapIntentLauncher.launch(launcherIntent)
                 }
             }
         }
@@ -124,13 +132,17 @@ class BiographyActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Location ${result.data.toString()}")
-                            location = result.data!!.extras?.getParcelable("location")!!
+                            val location = result.data!!.extras?.getParcelable<Location>("location")!!
                             i("Location == $location")
+                            biography.lat = location.lat
+                            biography.lng = location.lng
+                            biography.zoom = location.zoom
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
                 }
             }
+    }
     }
 
 
