@@ -19,7 +19,7 @@ import timber.log.Timber.i
 import com.squareup.picasso.Picasso
 import org.wit.biography.models.Location
 
-class BiographyActivity : AppCompatActivity() {
+class BiographyActivity : AppCompatActivity(){
     private lateinit var binding: ActivityBiographyBinding
     var biography = BiographyModel()
     lateinit var app: MainApp
@@ -96,12 +96,18 @@ class BiographyActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_biography, menu)
+        if (edit) menu.getItem(0).isVisible = true
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.item_cancel -> { finish() }
+            R.id.item_delete -> {
+                app.biographys.delete(biography)
+                setResult(RESULT_OK)
+                finish()
+            }
+            R.id.item_cancel -> {  finish()  }
         }
         return super.onOptionsItemSelected(item)
     }

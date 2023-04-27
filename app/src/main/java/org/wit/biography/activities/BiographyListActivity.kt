@@ -19,6 +19,9 @@ class BiographyListActivity : AppCompatActivity(), BiographyListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityBiographyListBinding
+    private var position: Int = 0
+    var edit = false
+    var biography = BiographyModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +46,13 @@ class BiographyListActivity : AppCompatActivity(), BiographyListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.item_delete -> {
+                setResult(99)
+                app.biographys.delete(biography)
+                finish()
+            }
             R.id.item_cancel -> {
-
+                finish()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -61,9 +69,10 @@ class BiographyListActivity : AppCompatActivity(), BiographyListener {
 
             }
         }
-    override fun onBiographyClick(biography: BiographyModel) {
+    override fun onBiographyClick(biography: BiographyModel, pos : Int) {
         val launcherIntent = Intent(this, BiographyActivity::class.java)
         launcherIntent.putExtra("biography_edit", biography)
+        position = pos
         getClickResult.launch(launcherIntent)
     }
 
@@ -75,7 +84,12 @@ class BiographyListActivity : AppCompatActivity(), BiographyListener {
                 (binding.recyclerView.adapter)?.
                 notifyItemRangeChanged(0,app.biographys.findAll().size)
             }
+            else // Deleting
+                if (it.resultCode == 99)     (binding.recyclerView.adapter)?.notifyItemRemoved(position)
         }
+
+
+
 
 }
 

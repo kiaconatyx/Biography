@@ -9,7 +9,7 @@ import org.wit.biography.models.BiographyModel
 
 
 interface BiographyListener {
-    fun onBiographyClick(biography: BiographyModel)
+    fun onBiographyClick(biography: BiographyModel, position : Int)
 }
 class BiographyAdapter constructor(private var biographys: List<BiographyModel>,
                                    private val listener: BiographyListener) :
@@ -39,7 +39,7 @@ class BiographyAdapter constructor(private var biographys: List<BiographyModel>,
             binding.biographyAuthor.text = biography.author
             binding.biographybookcount.text = biography.bookcount.toString()
             Picasso.get().load(biography.image).resize(200,200).into(binding.imageIcon)
-            binding.root.setOnClickListener { listener.onBiographyClick(biography) }
+            binding.root.setOnClickListener { listener.onBiographyClick(biography,adapterPosition) }
         }
     }
 }
