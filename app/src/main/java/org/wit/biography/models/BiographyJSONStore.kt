@@ -43,7 +43,19 @@ class BiographyJSONStore(private val context: Context) : BiographyStore {
 
 
     override fun update(biography: BiographyModel) {
-        // todo
+        val biographysList = findAll() as ArrayList<BiographyModel>
+        var foundBiography: BiographyModel? = biographysList.find { p -> p.id == biography.id }
+        if (foundBiography != null) {
+            foundBiography.title = biography.title
+            foundBiography.description = biography.description
+            foundBiography.ISBN = biography.ISBN
+            foundBiography.bookcount = biography.bookcount
+            foundBiography.image = biography.image
+            foundBiography.lat = biography.lat
+            foundBiography.lng = biography.lng
+            foundBiography.zoom = biography.zoom
+        }
+        serialize()
     }
 
     private fun serialize() {
