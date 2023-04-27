@@ -17,6 +17,7 @@ import org.wit.biography.models.BiographyModel
 import timber.log.Timber
 import timber.log.Timber.i
 import com.squareup.picasso.Picasso
+import org.wit.biography.models.Location
 
 class BiographyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBiographyBinding
@@ -120,7 +121,9 @@ class BiographyActivity : AppCompatActivity() {
             { i("Map Loaded") }
 
         binding.biographyLocation.setOnClickListener {
+            val location = Location(52.245696, -7.139102, 15f)
             val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
             mapIntentLauncher.launch(launcherIntent)
         }
 
