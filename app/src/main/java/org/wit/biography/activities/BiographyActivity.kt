@@ -87,7 +87,7 @@ class BiographyActivity : AppCompatActivity() {
         }
 
         binding.chooseImage.setOnClickListener {
-            i("Select image")
+            showImagePicker(imageIntentLauncher,this)
         }
         registerImagePickerCallback()
     }
@@ -105,6 +105,7 @@ class BiographyActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     private fun registerImagePickerCallback() {
         imageIntentLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult())
@@ -113,16 +114,23 @@ class BiographyActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Result ${result.data!!.data}")
-                            biography.image = result.data!!.data!!
+
+                            val image = result.data!!.data!!
+                            contentResolver.takePersistableUriPermission(image,
+                                Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            biography.image = image
+
                             Picasso.get()
                                 .load(biography.image)
                                 .into(binding.biographyImage)
+                            binding.chooseImage.setText(R.string.change_biography_image)
                         } // end of if
                     }
                     RESULT_CANCELED -> { } else -> { }
                 }
             }
     }
+
 
     private fun registerMapCallback() {
         mapIntentLauncher =
